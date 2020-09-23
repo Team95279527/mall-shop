@@ -1,22 +1,26 @@
-import {reqGoodsList} from '@/api'
+import { reqGoodsList } from '@/api'
 
 const state = {
-    goodsList:[]
+    goodsList: []
 }
-
-const mutations ={
-    GETGOODSLIST(state,arg){
+const mutations = {
+    GETGOODSLIST(state, arg) {
         state.goodsList = arg
     }
 }
 
+
 const actions = {
-    async getGoodsList({commit}){
-      const result = await reqGoodsList('/list')
-    //   console.log(result);
-      if(result.code ===200){
-        commit('GETGOODSLIST',result.data.list)
-      }
+    async getGoodsList({ commit }) {
+
+        const result = await reqGoodsList()
+        //在本地json-server mock的逻辑
+        commit('GETGOODSLIST', result)
+        //在服务器mock的逻辑
+        // console.log(result);
+        // if(result.code ===200){
+        // commit('GETGOODSLIST',result)
+        // }
     }
 }
 

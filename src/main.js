@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from '@/store'
 import router from '@/router'
+import * as API from '@/api'
 
 // 完整引入element-ui
 import ElementUI from 'element-ui'
@@ -16,6 +17,10 @@ Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 new Vue({
+  beforeCreate() {
+    Vue.prototype.$API = API
+    Vue.prototype.$bus = this
+  },
   render: h => h(App),
   router,
   store
